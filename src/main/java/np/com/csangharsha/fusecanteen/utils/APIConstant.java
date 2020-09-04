@@ -1,7 +1,7 @@
 package np.com.csangharsha.fusecanteen.utils;
 
-public class APIConstant {
+public interface APIConstant {
 
-    public static final String BASE_URL = "/api";
+    String BASE_URL = "/api";
 
 }

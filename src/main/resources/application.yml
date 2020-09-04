@@ -11,3 +11,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+
+app:
+  basePackage: "np.com.csangharsha.fusecanteen"
+  basePath: "/api.*"
