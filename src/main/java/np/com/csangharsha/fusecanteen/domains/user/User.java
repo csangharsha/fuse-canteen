@@ -1,16 +1,15 @@
 package np.com.csangharsha.fusecanteen.domains.user;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import np.com.csangharsha.fusecanteen.base.BaseEntity;
 import np.com.csangharsha.fusecanteen.domains.role.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -18,11 +17,7 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
     @NotBlank
     private String name;

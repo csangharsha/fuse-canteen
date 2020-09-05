@@ -1,15 +1,7 @@
 package np.com.csangharsha.fusecanteen.domains.user;
 
-import java.util.List;
-import java.util.Optional;
+import np.com.csangharsha.fusecanteen.base.BaseService;
 
-public interface UserService {
-    User save(User t);
-
-    User update(User t);
-
-    List<User> findAll();
-
-    Optional<User> findOne(Long id);
+public interface UserService extends BaseService<User> {
 
 }

@@ -1,6 +1,6 @@
 package np.com.csangharsha.fusecanteen.domains.user;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import np.com.csangharsha.fusecanteen.base.BaseRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends BaseRepository<User> {
 }
