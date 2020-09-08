@@ -32,7 +32,6 @@ public class MenuCategory extends BaseEntity {
     @Column(name = "added_date", updatable = false)
     private LocalDateTime addedDate;
 
-
     @UpdateTimestamp
     @Column(name = "update_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

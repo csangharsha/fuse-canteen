@@ -128,9 +128,13 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         User admin = new User("Canteen Admin", "admin@fusecanteen.com", "Nepal@123");
         admin.getRoles().add(adminRole);
 
+        User employee = new User("Sangharsha Chaulagain", "schaulagain@fusecanteen.com", "Nepal@123");
+        employee.getRoles().add(employeeRole);
+
         roleRepository.save(adminRole);
         roleRepository.save(employeeRole);
         userRepository.save(admin);
+        userRepository.save(employee);
     }
 
 }
