@@ -14,6 +14,7 @@ import np.com.csangharsha.fusecanteen.domains.user.User;
 import np.com.csangharsha.fusecanteen.domains.user.UserRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -29,6 +30,8 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private final MenuItemRepository menuItemRepository;
 
     private final TodayMenuRepository todayMenuRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -125,10 +128,10 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Role employeeRole = new Role("ROLE_EMPLOYEE");
 
         // save admin user
-        User admin = new User("Canteen Admin", "admin@fusecanteen.com", "Nepal@123");
+        User admin = new User("Canteen Admin", "admin@fusecanteen.com", passwordEncoder.encode("Nepal@123"));
         admin.getRoles().add(adminRole);
 
-        User employee = new User("Sangharsha Chaulagain", "schaulagain@fusecanteen.com", "Nepal@123");
+        User employee = new User("Sangharsha Chaulagain", "schaulagain@fusecanteen.com", passwordEncoder.encode("Nepal@123"));
         employee.getRoles().add(employeeRole);
 
         roleRepository.save(adminRole);

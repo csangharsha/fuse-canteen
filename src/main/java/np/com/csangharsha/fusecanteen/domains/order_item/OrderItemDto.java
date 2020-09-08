@@ -1,5 +1,6 @@
 package np.com.csangharsha.fusecanteen.domains.order_item;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import np.com.csangharsha.fusecanteen.base.BaseDto;
@@ -14,4 +15,9 @@ public class OrderItemDto extends BaseDto {
     private MenuItemDto menuItem;
 
     private Double quantity;
+
+    @JsonProperty("totalPrice")
+    public Double getTotalPrice() {
+        return quantity * menuItem.getPrice();
+    }
 }
