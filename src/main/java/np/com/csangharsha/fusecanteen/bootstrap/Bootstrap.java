@@ -5,6 +5,10 @@ import np.com.csangharsha.fusecanteen.domains.menu_category.MenuCategory;
 import np.com.csangharsha.fusecanteen.domains.menu_category.MenuCategoryRepository;
 import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItem;
 import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItemRepository;
+import np.com.csangharsha.fusecanteen.domains.order.Order;
+import np.com.csangharsha.fusecanteen.domains.order.OrderRepository;
+import np.com.csangharsha.fusecanteen.domains.order.OrderStatus;
+import np.com.csangharsha.fusecanteen.domains.order_item.OrderItem;
 import np.com.csangharsha.fusecanteen.domains.role.Role;
 import np.com.csangharsha.fusecanteen.domains.role.RoleRepository;
 import np.com.csangharsha.fusecanteen.domains.today_menu.TodayMenu;
@@ -18,6 +22,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -31,6 +37,8 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final TodayMenuRepository todayMenuRepository;
 
+    private final OrderRepository orderRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -42,7 +50,80 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         initUserAndRole();
         initMenuCategoryAndItem();
         initTodayMenu();
+        initOrderAndOrderItem();
+        initOrderAndOrderItemForHistory();
+    }
 
+    private void initOrderAndOrderItemForHistory() {
+        List<TodayMenu> todayMenuList = todayMenuRepository.getAllByTodayMenuId_TodayDate(LocalDate.now());
+
+        User two = userRepository.getOne(2L);
+
+        Order order = new Order();
+        order.setOrderDate(LocalDateTime.now().minusDays(2));
+        order.setOrderBy(two);
+        order.setStatus(OrderStatus.PENDING);
+
+        OrderItem orderItem3 = new OrderItem();
+        orderItem3.setMenuItem(todayMenuList.get(0).getMenuItem());
+        orderItem3.setQuantity(2);
+        orderItem3.setOrder(order);
+
+        OrderItem orderItem4 = new OrderItem();
+        orderItem4.setMenuItem(todayMenuList.get(1).getMenuItem());
+        orderItem4.setQuantity(2);
+        orderItem4.setOrder(order);
+
+        order.getOrderItems().add(orderItem3);
+        order.getOrderItems().add(orderItem4);
+
+        orderRepository.save(order);
+    }
+
+    private void initOrderAndOrderItem() {
+        List<TodayMenu> todayMenuList = todayMenuRepository.getAllByTodayMenuId_TodayDate(LocalDate.now());
+
+        User one = userRepository.getOne(1L);
+        User two = userRepository.getOne(2L);
+
+        Order order1 = new Order();
+        order1.setOrderDate(LocalDateTime.now());
+        order1.setOrderBy(one);
+        order1.setStatus(OrderStatus.PENDING);
+
+        OrderItem orderItem1 = new OrderItem();
+        orderItem1.setMenuItem(todayMenuList.get(0).getMenuItem());
+        orderItem1.setQuantity(2);
+        orderItem1.setOrder(order1);
+
+        OrderItem orderItem2 = new OrderItem();
+        orderItem2.setMenuItem(todayMenuList.get(1).getMenuItem());
+        orderItem2.setQuantity(5);
+        orderItem2.setOrder(order1);
+
+        order1.getOrderItems().add(orderItem1);
+        order1.getOrderItems().add(orderItem2);
+
+        Order order2 = new Order();
+        order2.setOrderDate(LocalDateTime.now());
+        order2.setOrderBy(two);
+        order2.setStatus(OrderStatus.PENDING);
+
+        OrderItem orderItem3 = new OrderItem();
+        orderItem3.setMenuItem(todayMenuList.get(0).getMenuItem());
+        orderItem3.setQuantity(2);
+        orderItem3.setOrder(order2);
+
+        OrderItem orderItem4 = new OrderItem();
+        orderItem4.setMenuItem(todayMenuList.get(1).getMenuItem());
+        orderItem4.setQuantity(2);
+        orderItem4.setOrder(order2);
+
+        order2.getOrderItems().add(orderItem3);
+        order2.getOrderItems().add(orderItem4);
+
+        orderRepository.save(order1);
+        orderRepository.save(order2);
     }
 
     private void initTodayMenu() {

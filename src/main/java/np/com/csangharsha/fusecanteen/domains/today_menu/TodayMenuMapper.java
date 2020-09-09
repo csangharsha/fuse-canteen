@@ -1,8 +1,6 @@
 package np.com.csangharsha.fusecanteen.domains.today_menu;
 
 import np.com.csangharsha.fusecanteen.base.BaseMapper;
-import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItem;
-import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItemDto;
 import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItemMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

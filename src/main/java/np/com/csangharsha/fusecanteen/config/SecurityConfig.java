@@ -66,15 +66,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+
+                // MENU CATEGORY AND MENU ITEM
                 .antMatchers("/api/menu-category").hasRole("ADMIN")
                 .antMatchers("/api/menu-item").hasRole("ADMIN")
+
+                // USER
+                .antMatchers("/api/users/{\\d+}/orders").authenticated()
                 .antMatchers("/api/users").hasRole("ADMIN")
+
+                // ORDER AND ORDER-ITEM
                 .antMatchers("/api/order-item").hasRole("ADMIN")
                 .antMatchers("/api/orders").authenticated()
+
+                // TODAY'S MENU
                 .antMatchers(HttpMethod.GET, "/api/today-menu").authenticated()
                 .antMatchers("/api/today-menu").hasRole("ADMIN")
+
                 .antMatchers(AUTH_WHITELIST).permitAll()
-                .antMatchers("/api/auth/authenticate").permitAll();
+
+                // AUTHENTICATION
+                .antMatchers("/api/auth/authenticate").permitAll()
+
+                // OTHERS
+                .antMatchers("/api/*").authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

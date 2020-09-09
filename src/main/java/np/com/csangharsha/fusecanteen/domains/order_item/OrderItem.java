@@ -25,6 +25,6 @@ public class OrderItem extends BaseEntity {
     private MenuItem menuItem;
 
     @Column(name = "quantity")
-    private Double quantity;
+    private Integer quantity;
 
 }

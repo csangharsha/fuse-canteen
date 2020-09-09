@@ -1,8 +1,6 @@
 package np.com.csangharsha.fusecanteen.domains.order_item;
 
 import np.com.csangharsha.fusecanteen.base.BaseMapper;
-import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItem;
-import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItemDto;
 import np.com.csangharsha.fusecanteen.domains.menu_item.MenuItemMapper;
 import np.com.csangharsha.fusecanteen.domains.order.OrderMapper;
 import org.mapstruct.Mapper;

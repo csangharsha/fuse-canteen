@@ -2,7 +2,6 @@ package np.com.csangharsha.fusecanteen.domains.order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import np.com.csangharsha.fusecanteen.base.BaseDto;

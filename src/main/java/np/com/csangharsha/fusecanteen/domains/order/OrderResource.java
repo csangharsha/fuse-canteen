@@ -1,13 +1,12 @@
 package np.com.csangharsha.fusecanteen.domains.order;
 
+import np.com.csangharsha.fusecanteen.auth.models.UserPrincipal;
 import np.com.csangharsha.fusecanteen.base.BaseResource;
 import np.com.csangharsha.fusecanteen.domains.order_item.OrderItem;
 import np.com.csangharsha.fusecanteen.domains.order_item.OrderItemService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -55,5 +54,12 @@ public class OrderResource extends BaseResource<Order, OrderDto> {
 
         return ResponseEntity.created(new URI(BASE_URL + "/" + newDto.getId())).body(newDto);
 
+    }
+
+    @GetMapping("/history")
+    public ResponseEntity<List<OrderDto>> getOrderHistory() {
+        Long loggedInUserId = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        List<Order> orderHistory = orderService.getOrderHistory(loggedInUserId);
+        return ResponseEntity.ok().body(orderMapper.toDto(orderHistory));
     }
 }

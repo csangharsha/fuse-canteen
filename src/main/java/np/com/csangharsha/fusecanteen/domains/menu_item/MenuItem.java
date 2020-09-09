@@ -3,7 +3,6 @@ package np.com.csangharsha.fusecanteen.domains.menu_item;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import np.com.csangharsha.fusecanteen.base.BaseEntity;
 import np.com.csangharsha.fusecanteen.domains.menu_category.MenuCategory;

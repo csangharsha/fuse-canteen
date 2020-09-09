@@ -10,7 +10,14 @@ public class MenuItemResource extends BaseResource<MenuItem, MenuItemDto> {
 
     public static final String BASE_URL = "/menu-item";
 
+    private final MenuItemService menuItemService;
+
+    private final MenuItemMapper menuItemMapper;
+
     public MenuItemResource(MenuItemService service, MenuItemMapper mapper) {
         super(service, mapper);
+        this.menuItemService = service;
+        this.menuItemMapper = mapper;
     }
+
 }
