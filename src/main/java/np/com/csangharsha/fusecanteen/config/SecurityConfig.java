@@ -77,6 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // ORDER AND ORDER-ITEM
                 .antMatchers("/api/order-item").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/orders").hasRole("ADMIN")
                 .antMatchers("/api/orders").authenticated()
 
                 // TODAY'S MENU

@@ -12,6 +12,6 @@ public interface OrderRepository extends BaseRepository<Order> {
     @Query(value = "SELECT o FROM Order o WHERE o.orderDate < :time AND o.orderBy.id = :userId")
     List<Order> getOrderHistory(@Param("time") LocalDateTime time, @Param("userId") Long userId);
 
-    List<Order> getAllByStatusAndOrderBy_Id(OrderStatus status, Long userId);
+    List<Order> getAllByOrderBy_IdAndOrderDateBetween(Long userId, LocalDateTime time1, LocalDateTime time2);
 
 }

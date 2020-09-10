@@ -56,10 +56,4 @@ public class OrderResource extends BaseResource<Order, OrderDto> {
 
     }
 
-    @GetMapping("/history")
-    public ResponseEntity<List<OrderDto>> getOrderHistory() {
-        Long loggedInUserId = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        List<Order> orderHistory = orderService.getOrderHistory(loggedInUserId);
-        return ResponseEntity.ok().body(orderMapper.toDto(orderHistory));
-    }
 }

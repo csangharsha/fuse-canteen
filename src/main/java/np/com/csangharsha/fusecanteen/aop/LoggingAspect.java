@@ -1,7 +1,5 @@
 package np.com.csangharsha.fusecanteen.aop;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -23,7 +21,6 @@ public class LoggingAspect {
 
     @Around("repoPointCut()")
     public Object getAllRepositoryLog(ProceedingJoinPoint joinPoint) throws Throwable {
-        ObjectMapper mapper = new ObjectMapper();
         String className = joinPoint.getSignature().getDeclaringType().getName();
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();

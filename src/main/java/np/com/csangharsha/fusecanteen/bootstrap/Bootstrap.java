@@ -62,7 +62,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Order order = new Order();
         order.setOrderDate(LocalDateTime.now().minusDays(2));
         order.setOrderBy(two);
-        order.setStatus(OrderStatus.PENDING);
+        order.setStatus(OrderStatus.READY);
 
         OrderItem orderItem3 = new OrderItem();
         orderItem3.setMenuItem(todayMenuList.get(0).getMenuItem());

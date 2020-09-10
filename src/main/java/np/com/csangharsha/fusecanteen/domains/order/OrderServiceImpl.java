@@ -25,6 +25,10 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
     @Override
     public List<Order> getPendingOrder(Long userId) {
-        return repository.getAllByStatusAndOrderBy_Id(OrderStatus.PENDING, userId);
+        return repository.getAllByOrderBy_IdAndOrderDateBetween(
+                userId,
+                LocalDateTime.of(LocalDate.now(), LocalTime.MIN),
+                LocalDateTime.of(LocalDate.now(), LocalTime.MAX)
+        );
     }
 }
